@@ -1,4 +1,5 @@
 let count=0;
+let i=0;
 
 function generateGrid() {
     const board = document.getElementById('grid');
@@ -12,23 +13,21 @@ function generateGrid() {
 generateGrid();
 
 function createCharacter(i) {
-    boxes[i].classList.add("Character1");
-    boxes[i+1].classList.add("Character2");
-    boxes[i+40].classList.add("Character3");
-    boxes[i+41].classList.add("Character4");
-    boxes[i+80].classList.add("Character5");
-    boxes[i+81].classList.add("Character6");
-
-
+    boxes[i].classList.add("character1");
+    boxes[i+1].classList.add("character2");
+    boxes[i+40].classList.add("character3");
+    boxes[i+41].classList.add("character4");
+    boxes[i+80].classList.add("character5");
+    boxes[i+81].classList.add("character6");
 }
 
 function clearCharacter(i) {
-    boxes[i].classList.remove("Character1");
-    boxes[i+1].classList.remove("Character2");
-    boxes[i+40].classList.remove("Character3");
-    boxes[i+41].classList.remove("Character4");
-    boxes[i+80].classList.remove("Character5");
-    boxes[i+81].classList.remove("Character6");
+    boxes[i].classList.remove("character1");
+    boxes[i+1].classList.remove("character2");
+    boxes[i+40].classList.remove("character3");
+    boxes[i+41].classList.remove("character4");
+    boxes[i+80].classList.remove("character5");
+    boxes[i+81].classList.remove("character6");
 }
 
 
