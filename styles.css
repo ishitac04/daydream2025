@@ -1,5 +1,5 @@
 body {
-    background-image: url("background-beach.jpg");
+    background-image: url("beach-background.gif");
     background-size: 100%;
     display: flex;
     flex-direction: center;
@@ -39,7 +39,7 @@ body {
 #grid div {
     width: 30px;
     height: 30px;
-    border: 1px solid #5c2323;
+    border: 0px solid #5c2323;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,17 +52,37 @@ body {
     background-size: 100%;
 }
 
-.character2 {
-    background-image: url("Character2.png");
+.character12{
+    background-image: url("Character1.2.png");
     background-size: 100%;
 }
 
-.character3{
-    background-image: url("Character1.png");
+.character13{
+    background-image: url("Character1.3.png");
     background-size: 100%;
 }
 
-.character4{
-    background-image: url("Character2.png");
+.character14{
+    background-image: url("Character1.4.png");
+    background-size: 100%;
+}
+
+.character21 {
+    background-image: url("Character2.1.png");
+    background-size: 100%;
+}
+
+.character22{
+    background-image: url("Character2.2.png");
+    background-size: 100%;
+}
+
+.character23{
+    background-image: url("Character2.3.png");
+    background-size: 100%;
+}
+
+.character24{
+    background-image: url("Character2.4.png");
     background-size: 100%;
 }

@@ -1,3 +1,5 @@
+let count=0;
+
 function generateGrid() {
     const board = document.getElementById('grid');
     for (i=0; i<800; i++) {
@@ -11,11 +13,28 @@ generateGrid();
 
 function createCharacter(i) {
     boxes[i].classList.add("Character1");
-    boxes[i+40].classList.add("Character2")
+    boxes[i+40].classList.add("Character12");
+    boxes[i+80].classList.add("Character13");
+    boxes[i+120].classList.add("Character14");
+    boxes[i+1].classList.add("Character21");
+    boxes[i+41].classList.add("Character22");
+    boxes[i+81].classList.add("Character23");
+    boxes[i+121].classList.add("Character24");
+
+
 }
 
-createCharacter(50);
+function clearCharacter(i) {
+    boxes[i].classList.remove("Character11");
+    boxes[i+40].classList.remove("Character12");
+    boxes[i+80].classList.remove("Character13");
+    boxes[i+120].classList.remove("Character14");
+    boxes[i+1].classList.remove("Character21");
+    boxes[i+41].classList.remove("Character22");
+    boxes[i+81].classList.remove("Character23");
+    boxes[i+121].classList.remove("Character24");
 
+}
 
 
 
@@ -80,11 +99,31 @@ createCharacter(50);
                         invDiv.style.display = 'none';
                     }
                 }
+                
             });
         });
-        
+
+        function keyPress(event) {
+            if (count==1) {
+                clearCharacter(i);
+            }
+            switch (event.key) {
+                case 'ArrowUp':
+                i = i - 40;
+                break;
+            case 'ArrowDown':
+                i = i + 40;
+                break;
+            case 'ArrowLeft':
+                i = i - 1;
+                break;
+            case 'ArrowRight':
+                i = i + 1;
+                break;
+            }
+            createCharacter(i)
+            count=1;
+        }
 
 
-        
-        
-    
+        document.addEventListener('keydown', keyPress);
