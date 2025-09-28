@@ -1,5 +1,9 @@
 let count=0;
 let i=0;
+let area = []; 
+const backgroundmusic = document.getElementById("backgroundmusic");
+
+
 
 function generateGrid() {
     const board = document.getElementById('grid');
@@ -11,6 +15,51 @@ function generateGrid() {
 }
 
 generateGrid();
+
+function showPopup(text) {
+    const popup = document.createElement('div');
+    popup.id = 'text-popup';
+    popup.innerHTML = `
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <div class="popup-text">${text}</div>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    
+    const closeBtn = popup.querySelector('.popup-close');
+    closeBtn.onclick = function() {
+        document.body.removeChild(popup);
+    };
+    
+    popup.onclick = function(e) {
+        if (e.target === popup) {
+            document.body.removeChild(popup);
+        }
+    };
+}
+
+function showCratePopup(crateIndex) {
+    if (document.getElementById('crate-popup')) return;
+
+    const popup = document.createElement('div');
+    popup.id = 'crate-popup';
+    popup.innerHTML = `
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <div class="popup-text">The crate demands a sacrifice to allow you to live! Press I to open inventory. Press a number key to sacrifice an item!!</div>
+        </div>
+    `;
+    document.body.appendChild(popup);
+
+    const closeBtn = popup.querySelector('.popup-close');
+    closeBtn.onclick = () => document.body.removeChild(popup);
+
+    popup.onclick = (e) => {
+        if (e.target === popup) document.body.removeChild(popup);
+    };
+}
+
 
 function createCharacter(i) {
     boxes[i].classList.add("character1");
@@ -30,6 +79,25 @@ function clearCharacter(i) {
     boxes[i+81].classList.remove("character6");
 }
 
+function cratelocations() {
+    number=Math.floor(Math.random()*400)
+    return number;
+}
+
+function createCrate(n) {
+    boxes[n].classList.add("crate");
+    area.push(n-41, n-40, n-39,
+              n-1,  n,   n+1,
+              n+39, n+40, n+41);
+}
+
+function spawnCrates(amount) {
+    for (let c = 0; c < amount; c++) {
+        let num = cratelocations();
+        createCrate(num);
+    }
+}
+
 
 
         function getRandomInt(max) {
@@ -37,7 +105,11 @@ function clearCharacter(i) {
         }
         let inventory = []
         let possableitems = [
-            {name: "", image: ""}
+            {name: "Torch", image: ""},
+            {name: "Apple", image: ""},
+            {name: "Water", image: ""},
+            {name: "Phone", image: ""},
+            {name: "Bagpack", image: ""}
         
         ]
         function addrandomitem(ammount) {
@@ -60,14 +132,14 @@ function clearCharacter(i) {
             inventory.push(json);
             renderInventory();
         }
-
-        addrandomitem(3);
         function renderInventory() {
             const invDiv = document.getElementById('inventory-bar');
             if (!invDiv) return;
             if (invDiv.style.display === 'none') return;
+        
             if (inventory.length === 0) {
-                invDiv.innerHTML = '<span style="color: #aaa;">Inventory is empty</span>';
+                invDiv.innerHTML = '<span style="color: #0a0;">You survived!</span>';
+                showPopup("You survived!");
             } else {
                 invDiv.innerHTML = inventory.map(item => {
                     let imgHtml = '';
@@ -80,6 +152,7 @@ function clearCharacter(i) {
                 }).join('');
             }
         }
+        
 
         document.addEventListener('DOMContentLoaded', () => {
             const invDiv = document.getElementById('inventory-bar');
@@ -98,26 +171,51 @@ function clearCharacter(i) {
         });
 
         function keyPress(event) {
-            if (count==1) {
-                clearCharacter(i);
-            }
+            if (count==1) clearCharacter(i);
+        
             switch (event.key) {
-                case 'ArrowUp':
-                i = i - 40;
+                case 'ArrowUp': 
+                i -= 40; 
+                backgroundmusic.play();
                 break;
-            case 'ArrowDown':
-                i = i + 40;
-                break;
-            case 'ArrowLeft':
-                i = i - 1;
-                break;
-            case 'ArrowRight':
-                i = i + 1;
-                break;
+                case 'ArrowDown': i += 40; break;
+                case 'ArrowLeft': i -= 1; break;
+                case 'ArrowRight': i += 1; break;
             }
-            createCharacter(i)
-            count=1;
+        
+            createCharacter(i);
+            count = 1;
+        
+            if (area.includes(i+40)) {
+                showCratePopup(i+40);
+            }
+        
+            if (/^[1-9]$/.test(event.key)) {
+                const index = parseInt(event.key) - 1;
+                if (inventory[index]) {
+                    inventory.splice(index, 1);
+                    renderInventory();
+        
+                    const cratePopup = document.getElementById('crate-popup');
+                    if (cratePopup && area.includes(i+40)) {
+                        boxes[i+40].classList.remove("crate");
+                        const toRemove = [i+40-41,i+40-40,i+40-39,i+40-1,i+40,i+40+1,i+40+39,i+40+40,i+40+41];
+                        area = area.filter(n => !toRemove.includes(n));
+                        document.body.removeChild(cratePopup);
+                    }
+                }
+            }
         }
+        
+        
 
 
         document.addEventListener('keydown', keyPress);
+        num = cratelocations()
+        spawnCrates(5);
+        additembyname("Apple")
+        additembyname("Torch")
+        additembyname("Bagpack")
+        additembyname("Water")
+        additembyname("Phone")
+        
