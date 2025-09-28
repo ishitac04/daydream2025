@@ -48,41 +48,31 @@ body {
 }
 
 .character1 {
-    background-image: url("Character1.png");
+    background-image: url("character1.png");
     background-size: 100%;
 }
 
-.character12{
-    background-image: url("Character1.2.png");
+.character2{
+    background-image: url("Character2.png");
     background-size: 100%;
 }
 
-.character13{
-    background-image: url("Character1.3.png");
+.character3{
+    background-image: url("Character3.png");
     background-size: 100%;
 }
 
-.character14{
-    background-image: url("Character1.4.png");
+.character4{
+    background-image: url("Character4.png");
     background-size: 100%;
 }
 
-.character21 {
-    background-image: url("Character2.1.png");
+.character5 {
+    background-image: url("Character5.png");
     background-size: 100%;
 }
 
-.character22{
-    background-image: url("Character2.2.png");
-    background-size: 100%;
-}
-
-.character23{
-    background-image: url("Character2.3.png");
-    background-size: 100%;
-}
-
-.character24{
-    background-image: url("Character2.4.png");
+.character6{
+    background-image: url("Character6.png");
     background-size: 100%;
 }
