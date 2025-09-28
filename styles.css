@@ -10,6 +10,24 @@ body {
     font-size: x-large;
 }
 
+       #inventory-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30,30,30,0.95);
+            color: #fff;
+            padding: 16px 0 12px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            z-index: 1000;
+            min-height: 48px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
 #grid {
     border-radius: 20px;
     border: 1px solid #000000;
