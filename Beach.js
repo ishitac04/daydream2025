@@ -8,3 +8,10 @@ function generateGrid() {
 }
 
 generateGrid();
+
+function createCharacter(i) {
+    boxes[i].classList.add("Character1");
+    boxes[i+40].classList.add("Character2")
+}
+
+createCharacter(50);

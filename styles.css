@@ -1,5 +1,5 @@
 body {
-    background-image: url("background.jpg");
+    background-image: url("background-beach.jpg");
     background-size: 100%;
     display: flex;
     flex-direction: center;
@@ -27,4 +27,24 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 20px;
+}
+
+.character1 {
+    background-image: url("Character1.png");
+    background-size: 100%;
+}
+
+.character2 {
+    background-image: url("Character2.png");
+    background-size: 100%;
+}
+
+.character3{
+    background-image: url("Character1.png");
+    background-size: 100%;
+}
+
+.character4{
+    background-image: url("Character2.png");
+    background-size: 100%;
 }
